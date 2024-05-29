@@ -10,15 +10,10 @@ export default class EntryFormAbility extends FormExtensionAbility {
 
   onAddForm(want) {
     let formId: string = want.parameters !== undefined ? want.parameters['ohos.extra.param.key.form_identity'] as string : '';
-    let formName: string = want.parameters !== undefined ? want.parameters['ohos.extra.param.key.form_name'] as string : '';
-    let dimensionFlag: number = want.parameters !== undefined ? want.parameters['ohos.extra.param.key.form_dimension'] as number : 0;
 
     this.noteRdb.createRdbStore(this.context).then(() => {
       let form: Form = new Form();
       form.formId = formId;
-      form.formName = formName;
-      form.dimension = dimensionFlag;
-
       // 初始化并更新表单数据
       this.updateFormWithNotes(formId);
     });
