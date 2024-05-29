@@ -12,7 +12,7 @@ struct Main{
   @State text:string = ""
   @State note:Note = null;
   @State changed:boolean = false;
-
+  // 两个弹窗
   private addDialogController = new CustomDialogController({
     builder: generalDialog({message:$r('app.string.addPrompt')}),
     customStyle:true
@@ -23,7 +23,7 @@ struct Main{
     builder: generalDialog({message:$r('app.string.modifyPrompt')}),
     customStyle:true
   })
-
+  // 获取该页面内容（添加或者修改两种情况）
   onPageShow(){
     const params = router.getParams();
     if(params!=null){
@@ -75,17 +75,19 @@ struct Main{
   build(){
     Column(){
       Flex({direction: FlexDirection.Column}){
-          Button(($r('app.string.goBackButton')), { type: ButtonType.Normal })
-            .fontColor(Color.Black)
-            .fontSize(25)
-            .backgroundColor(Color.Transparent)
-            .width('30%')
-            .height('8%')
-            .onClick(()=>{
-              router.back({
-                url:'pages/main'
-              })
+        // 返回按钮
+        Button(($r('app.string.goBackButton')), { type: ButtonType.Normal })
+          .fontColor(Color.Black)
+          .fontSize(25)
+          .backgroundColor(Color.Transparent)
+          .width('30%')
+          .height('8%')
+          .onClick(()=>{
+            router.back({
+              url:'pages/main'
             })
+          })
+        // 标题
         TextArea({placeholder:$r('app.string.inputTitle'),text:this.note?this.note.title:null})
           .placeholderFont({size:30})
           .width('100%')

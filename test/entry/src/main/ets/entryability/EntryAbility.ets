@@ -4,7 +4,7 @@ import window from '@ohos.window';
 import NoteDatabase from '../../utils/NodeRdb/NoteDatabase'
 import router from '@ohos.router'
 
-let noteId = -1;
+let noteId = -1;  // 默认-1
 
 export default class EntryAbility extends UIAbility {
   private noteRdb = NoteDatabase
@@ -29,7 +29,9 @@ export default class EntryAbility extends UIAbility {
       noteId = params.noteId;
       console.info("onCreate router targetPage:" + params.noteId);
     }
+    // 若为-1则表示没有从服务卡片打开
     if(noteId != -1){
+      // 0表示添加
       if(noteId == 0){
         router.pushUrl({
           url:'pages/addOrModifyPage'
@@ -42,6 +44,7 @@ export default class EntryAbility extends UIAbility {
             id: noteId
           }
         })
+        // 重置
         noteId = -1;
       }
     }
@@ -53,6 +56,7 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     windowStage.loadContent('pages/login')
+    // 页面跳转
     if(noteId != -1){
       if(noteId == 0){
         router.pushUrl({

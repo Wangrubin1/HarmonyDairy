@@ -62,6 +62,7 @@ struct Login {
     .height('100%')
     .backgroundColor('#ff25c5b5')
   }
+  // 首次打开创建密码
   createPassword(){
     if(this.password != "") {
       this.preference.putPreference(`${this.password}`)
@@ -77,6 +78,7 @@ struct Login {
     }
   }
 
+  // 检查密码
   checkLogin(){
     this.preference.checkPassword(this.password)
   }

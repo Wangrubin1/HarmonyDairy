@@ -12,6 +12,7 @@ struct WidgetCard {
       .height('15%')
       if(this.titles.length){
         List({ space: 5 }){
+          // notes列表
           ForEach(this.titles, (title: string, index:number) => {
             ListItem() {
               Text(`${title}`)
@@ -26,6 +27,7 @@ struct WidgetCard {
                 'action':'router',
                 'abilityName': 'EntryAbility',
                 'params':{
+                  // 传递参数为id
                   'noteId':this.noteId[index]
                 }
               })
@@ -44,20 +46,13 @@ struct WidgetCard {
               'action':'router',
               'abilityName': 'EntryAbility',
               'params':{
+                // 传递参数为0，代表添加
                 'noteId':0
               }
             })
           })
       }
     }
-    // .onClick(() => {
-    //   postCardAction(this, {
-    //     'action': 'message',
-    //     'params': {
-    //       'msgTest': 'messageEvent',
-    //     },
-    //   });
-    // })
     .width('100%')
     .height('100%')
     .backgroundColor(0xDCDCDC) // 设置背景颜色

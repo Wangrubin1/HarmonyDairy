@@ -96,7 +96,7 @@ struct Main {
       .height('8%')
 
       Stack({alignContent: Alignment.Top}) {
-
+        // 列表展示
         List({ space: 10 }) {
           ForEach(this.notesList, (note: Note) => {
             ListItem() {
@@ -121,6 +121,7 @@ struct Main {
         .scrollBar(BarState.Auto)
 
 
+        // 添加按钮
         Image($rawfile('add.png'))
           .clip(new Circle({width: '100%',height:'100%'}))
           .align(Alignment.Center)
