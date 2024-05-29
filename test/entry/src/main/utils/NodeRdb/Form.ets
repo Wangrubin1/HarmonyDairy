@@ -24,16 +24,6 @@ export default class Form {
   formId: string = '';
 
   /**
-   * Form name.
-   */
-  formName: string = '';
-
-  /**
-   * Card dimension.
-   */
-  dimension: number = 0;
-
-  /**
    * Get inserted form data.
    *
    * @return Return form data.
@@ -41,8 +31,6 @@ export default class Form {
   toValuesBucket(): relationalStore.ValuesBucket {
     return {
       'formId': this.formId,
-      'formName': this.formName,
-      'dimension': this.dimension
     };
   }
 }
