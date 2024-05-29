@@ -1,5 +1,5 @@
 @Component
-
+// list格式
 export struct noteStyle{
   title:string;
   text:string;

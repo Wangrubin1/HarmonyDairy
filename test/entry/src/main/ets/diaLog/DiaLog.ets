@@ -1,4 +1,5 @@
 @CustomDialog
+// 弹窗格式（添加、删除、修改成功提示）
 export struct generalDialog {
 
   controller: CustomDialogController
@@ -19,6 +20,7 @@ export struct generalDialog {
     .borderRadius(24)
   }
 }
+// 删除确认弹窗
 @CustomDialog
 export struct chooseDialog {
   @Link noteId : number;

@@ -2,7 +2,7 @@ import router from '@ohos.router';
 import promptAction from '@ohos.promptAction';
 import NoteDatabase from '../../utils/NodeRdb/NoteDatabase'
 import {Note} from '../../utils/NodeRdb/Notes'
-import {noteStyle} from '../../utils/style/noteStyle'
+import {noteStyle} from '../style/noteStyle'
 import PreferenceUtil from '../../utils/preference/PreferencesLogInfo'
 import {chooseDialog, generalDialog} from '../diaLog/DiaLog'
 import form from '../entryability/EntryFormAbility';

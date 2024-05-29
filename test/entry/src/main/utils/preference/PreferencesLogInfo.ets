@@ -86,7 +86,7 @@ class PreferenceUtil {
     return value;
   }
 
-//   判空
+//  是否首次登录
   async firstLogin(){
     let t;
     if (!preference) {
@@ -95,15 +95,14 @@ class PreferenceUtil {
     t = !await preference.has('password')
     return t;
   }
-
+  // 检查密码
   async checkPassword(input:string){
 
     let truePass =await this.getPreference();
 
     if(input == truePass){
       router.replaceUrl({
-        url: 'pages/main',
-        params:{prompt:true}
+        url: 'pages/main'
       })
     }
     else{
