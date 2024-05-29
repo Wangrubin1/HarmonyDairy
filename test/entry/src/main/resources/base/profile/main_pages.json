@@ -1,0 +1,7 @@
+{
+  "src": [
+    "pages/login",
+    "pages/main",
+    "pages/addOrModifyPage"
+  ]
+}

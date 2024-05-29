@@ -1,0 +1,92 @@
+{
+  "string": [
+    {
+      "name": "createPassword",
+      "value": "创建密码"
+    },
+    {
+      "name": "inputPassword",
+      "value": "输入密码"
+    },
+    {
+      "name": "loginButton",
+      "value": "登录"
+    },
+    {
+      "name": "emptyInputPrompt",
+      "value": "请输入密码"
+    },
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "deletePrompt",
+      "value": "删除成功"
+    },
+    {
+      "name": "loginPrompt",
+      "value": "登录成功"
+    },
+    {
+      "name": "diaryTitle",
+      "value": "日记本"
+    },
+    {
+      "name": "addPrompt",
+      "value": "添加成功"
+    },
+    {
+      "name": "modifyPrompt",
+      "value": "修改成功"
+    },
+    {
+      "name": "inputTitle",
+      "value": "标题内容"
+    },
+    {
+      "name": "inputText",
+      "value": "日记内容"
+    },
+    {
+      "name": "goBackButton",
+      "value": "<返回"
+    },
+    {
+      "name": "saveButton",
+      "value": "保存"
+    },
+    {
+      "name": "deleteConfirmText",
+      "value": "确认删除？"
+    },
+    {
+      "name": "ConfirmButton",
+      "value": "确认"
+    },
+    {
+      "name": "cancelButton",
+      "value": "取消"
+    },
+    {
+      "name": "createTime",
+      "value": "创建于%s"
+    },
+    {
+      "name": "EntryFormAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "EntryFormAbility_label",
+      "value": "form_label"
+    }
+  ]
+}

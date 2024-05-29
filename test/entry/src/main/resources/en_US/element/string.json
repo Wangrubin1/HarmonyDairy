@@ -1,0 +1,92 @@
+{
+  "string": [
+    {
+      "name": "createPassword",
+      "value": "Create your password"
+    },
+    {
+      "name": "inputPassword",
+      "value": "Enter your password"
+    },
+    {
+      "name": "loginButton",
+      "value": "Login"
+    },
+    {
+      "name": "emptyInputPrompt",
+      "value": "Please enter your password"
+    },
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "deletePrompt",
+      "value": "Deleted Successfully"
+    },
+    {
+      "name": "loginPrompt",
+      "value": "Login Successfully"
+    },
+    {
+      "name": "diaryTitle",
+      "value": "DIARY"
+    },
+    {
+      "name": "addPrompt",
+      "value": "Added Successfully"
+    },
+    {
+      "name": "modifyPrompt",
+      "value": "Modified Successfully"
+    },
+    {
+      "name": "inputTitle",
+      "value": "Title Content"
+    },
+    {
+      "name": "inputText",
+      "value": "Diary Content"
+    },
+    {
+      "name": "goBackButton",
+      "value": "<Back"
+    },
+    {
+      "name": "saveButton",
+      "value": "SAVE"
+    },
+    {
+      "name": "deleteConfirmText",
+      "value": "Confirm deletion?"
+    },
+    {
+      "name": "ConfirmButton",
+      "value": "Confirm"
+    },
+    {
+      "name": "cancelButton",
+      "value": "Cancel"
+    },
+    {
+      "name": "createTime",
+      "value": "created in %s"
+    },
+    {
+      "name": "EntryFormAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "EntryFormAbility_label",
+      "value": "form_label"
+    }
+  ]
+}
