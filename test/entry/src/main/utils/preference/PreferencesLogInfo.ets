@@ -5,12 +5,12 @@ import promptAction from '@ohos.promptAction';
 
 const STORE_NAME = "LogInfo"
 
-let context = getContext(this)
+let context = null;
 let preference: preferences.Preferences
-
 class PreferenceUtil {
   // 初始化对象
-  async InitPreferences() {
+  async InitPreferences(con) {
+    context = con
     try {
       preference = await preferences.getPreferences(context, STORE_NAME)
     }
@@ -19,29 +19,19 @@ class PreferenceUtil {
     }
   }
 
-  /**
-   * 删除所有的preferences对象
-   */
-  async deletePreferences() {
-    try {
-      await preferences.deletePreferences(context, STORE_NAME);
-    } catch(err) {
-      console.error('TAG', `Failed to delete preferences, Cause: ${err}`);
-    };
-  }
 
   // 写入preference数据
-  async putPreference(value: string) {
+  async putPreference(key:string,value: string) {
     if (!value) {
       return
     }
 
     if (!preference) {
-      await this.InitPreferences();
+      await this.InitPreferences(context);
     }
     // 将数据保存到首选项，内存中
     try {
-      await preference.put('password', value);
+      await preference.put(key, value);
     } catch (err) {
       console.error('TAG', `Failed to put value, Cause: ${err}`);
     }
@@ -52,7 +42,7 @@ class PreferenceUtil {
   // 设置登录状态
   async setLogin(){
     if (!preference) {
-      await this.InitPreferences();
+      await this.InitPreferences(context);
     }
     await preference.put('isLogin', true);
   }
@@ -60,7 +50,7 @@ class PreferenceUtil {
   // 检查登录状态
   async loginState(){
     if (!preference) {
-      await this.InitPreferences();
+      await this.InitPreferences(context);
     }
 
     let state;
@@ -71,14 +61,14 @@ class PreferenceUtil {
   /**
    * 获取preference对象
    */
-  async getPreference() {
+  async getPreference(params) {
 
     let value: string = "";
     if (!preference) {
-      await this.InitPreferences();
+      await this.InitPreferences(context);
     }
     try {
-      value = <string>await preference.get('password',"")
+      value = <string>await preference.get(params,"")
     } catch (err) {
       console.error('TAG', `Failed to get value, Cause: ${err}`)
     }
@@ -90,7 +80,7 @@ class PreferenceUtil {
   async firstLogin(){
     let t;
     if (!preference) {
-      await this.InitPreferences();
+      await this.InitPreferences(context);
     }
     t = !await preference.has('password')
     return t;
@@ -98,7 +88,7 @@ class PreferenceUtil {
   // 检查密码
   async checkPassword(input:string){
 
-    let truePass =await this.getPreference();
+    let truePass =await this.getPreference('password');
 
     if(input == truePass){
       router.replaceUrl({

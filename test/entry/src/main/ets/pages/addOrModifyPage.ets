@@ -3,11 +3,12 @@ import NoteDatabase from '../../utils/NodeRdb/NoteDatabase'
 import {Note} from '../../utils/NodeRdb/Notes'
 import systemDateTime from '@ohos.systemDateTime'
 import {generalDialog} from '../diaLog/DiaLog'
-
+import PreferenceUtil from '../../utils/preference/PreferencesLogInfo'
 @Entry
 @Component
 struct Main{
   private noteRdb = NoteDatabase
+  private preference = PreferenceUtil // 用于获取formId
   @State title:string = ""
   @State text:string = ""
   @State note:Note = null;
@@ -40,7 +41,7 @@ struct Main{
     try {
       const dateTime = (await systemDateTime.getDate()).toLocaleString();
       const note = new Note(this.title, this.text, dateTime);
-      this.noteRdb.insert(note);
+      await this.noteRdb.insert(note);
       // 成功插入提示
       this.addDialogController.open();
       setTimeout(() => {
@@ -49,15 +50,22 @@ struct Main{
           url: 'pages/main'
         });
       }, 2000);
+      // 更新服务卡片
+      const formId = await this.preference.getPreference('formId');
+      await this.noteRdb.updateFormWithNotes(this.noteRdb, formId);
     } catch (err) {
       console.log("insertNoteError"+err);
     }
   }
 
   // 修改操作
-  modifyNote() {
+  async modifyNote() {
     try {
-      this.noteRdb.update(this.note,this.title,this.text);
+      await this.noteRdb.update(this.note,this.title,this.text);
+
+      this.preference.getPreference('formId').then((id)=>{
+        this.noteRdb.updateFormWithNotes(this.noteRdb,id);
+      })
       // 成功修改提示
       this.modifyDialogController.open();
       setTimeout(() => {
@@ -66,6 +74,9 @@ struct Main{
           url: 'pages/main'
         });
       }, 2000);
+      // 更新服务卡片
+      const formId = await this.preference.getPreference('formId');
+      await this.noteRdb.updateFormWithNotes(this.noteRdb, formId);
     } catch (err) {
       console.log("modifyNoteError" + err);
     }
@@ -120,15 +131,14 @@ struct Main{
           if(this.changed)
             Button(($r('app.string.saveButton')),{type:ButtonType.Capsule})
               .position({x:175,y:500})
-              .onClick(()=>{
-                if(this.note){
+              .onClick(()=> {
+                if (this.note) {
                   this.modifyNote();
                 }
-                else{
+                else {
                   this.insertNote();
                 }
               })
-
         }
 
       }

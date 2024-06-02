@@ -3,17 +3,22 @@ import hilog from '@ohos.hilog';
 import window from '@ohos.window';
 import NoteDatabase from '../../utils/NodeRdb/NoteDatabase'
 import router from '@ohos.router'
-
+import formInfo from '@ohos.app.form.formInfo';
+import formProvider from '@ohos.app.form.formProvider';
+import EntryFormAbility from '../entryability/EntryFormAbility'
+import PreferenceUtil from '../../utils/preference/PreferencesLogInfo'
 let noteId = -1;  // 默认-1
 
 export default class EntryAbility extends UIAbility {
+
+  private preference = PreferenceUtil
   private noteRdb = NoteDatabase
   // 首次打开
-  onCreate(want, launchParam) {
+  onCreate(want) {
     // 初始化数据库
     this.noteRdb.createRdbStore(this.context);
     console.log("初始化数据库完成");
-
+    this.preference.InitPreferences(this.context)
     // 服务卡片跳转
     if (want.parameters.params !== undefined) {
       let params = JSON.parse(want.parameters.params);
@@ -28,6 +33,7 @@ export default class EntryAbility extends UIAbility {
       let params = JSON.parse(want.parameters.params);
       noteId = params.noteId;
       console.info("onCreate router targetPage:" + params.noteId);
+      console.info("onCreate router targetPage:"+ want.parameters[formInfo.FormParam.IDENTITY_KEY])
     }
     // 若为-1则表示没有从服务卡片打开
     if(noteId != -1){

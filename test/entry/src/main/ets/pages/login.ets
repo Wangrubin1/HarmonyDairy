@@ -5,7 +5,6 @@ import promptAction from '@ohos.promptAction';
 @Entry
 @Component
 
-
 struct Login {
   private preference = PreferenceUtil
 
@@ -14,7 +13,6 @@ struct Login {
 
   // 检查是否首次打开应用
   onPageShow() {
-    this.preference.InitPreferences();
     this.preference.firstLogin().then((f)=>{
       this.firstLogin = f;
     })
@@ -65,7 +63,7 @@ struct Login {
   // 首次打开创建密码
   createPassword(){
     if(this.password != "") {
-      this.preference.putPreference(`${this.password}`)
+      this.preference.putPreference('password',`${this.password}`)
       router.replaceUrl({
         url: 'pages/main',
       })

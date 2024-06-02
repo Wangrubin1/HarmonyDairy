@@ -34,6 +34,9 @@ struct Main {
 
   // 打开页面
   onPageShow() {
+    this.preference.getPreference('formId').then((s)=>{
+      console.log("formTest2"+s)
+    })
     // 提示登录成功
     this.preference.loginState().then((s)=>{
       console.log("loginState"+s)
@@ -59,9 +62,12 @@ struct Main {
   }
 
   // 删除数据
-  deleteById(noteId:number){
+  async deleteById(noteId:number){
     try{
-      this.noteRdb.delete(noteId);
+      await this.noteRdb.delete(noteId);
+      this.preference.getPreference('formId').then((id)=>{
+        this.noteRdb.updateFormWithNotes(this.noteRdb,id);
+      })
       // 成功删除
       this.deleteDialogController.open();
       setTimeout(() => {
@@ -69,6 +75,9 @@ struct Main {
         // 刷新list
         this.queryAllNotes();
       }, 2000);
+      // 更新服务卡片
+      const formId = await this.preference.getPreference('formId');
+      await this.noteRdb.updateFormWithNotes(this.noteRdb, formId);
     }catch (err) {
       console.log("deleteNoteError" + err);
     }
